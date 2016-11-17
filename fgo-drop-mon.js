@@ -12,20 +12,11 @@ var rl = readline.createInterface({
 
 rl.on("line", function(data) {
 	try {
-		data = Buffer.from(data, "hex");
+		main(data);
 	} catch (err) {
-		console.log(err);
+		console.log(err.constructor.name + ": " + err.message);
+		return;
 	}
-
-	zlib.unzip(data, function(err, data) {
-		try {
-			if (err) throw err;
-			data = Buffer.from(data.toString(), "base64").toString();
-			main(data);
-		} catch (err) {
-			console.log(err);
-		}
-	});	
 });
 
 function buildTable(fn) {
@@ -41,6 +32,9 @@ function buildTable(fn) {
 }
 
 function main(data) {
+	data = Buffer.from(data, "hex");
+	data = zlib.unzipSync(data);
+	data = Buffer.from(data.toString(), "base64").toString();
 	data = data.replace(/}[^}]*$/, "}");
 	data = JSON.parse(data);
 	var drops = findDrop(data.cache.replaced.battle[0].battleInfo.enemyDeck);
