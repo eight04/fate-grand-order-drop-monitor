@@ -5,7 +5,7 @@ This script can get item drops from the data grabbed by wireshark. Tested with C
 Usage
 -----
 ```
-tshark -l -f "tcp port http" -Y data-text-lines -T fields -e data | node fgo-drop-mon.js
+tshark -l -Y "http and data-text-lines" -T fields -e data | node fgo-drop-mon.js
 ```
 
 ID Table
