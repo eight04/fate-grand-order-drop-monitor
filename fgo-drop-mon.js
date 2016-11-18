@@ -14,8 +14,7 @@ rl.on("line", function(data) {
 	try {
 		main(data);
 	} catch (err) {
-		console.log(err.constructor.name + ": " + err.message);
-		return;
+		// suppress error
 	}
 });
 
