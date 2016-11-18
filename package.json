@@ -6,7 +6,7 @@
   "author": "eight <eight04@gmail.com> (http://eight04.blogspot.tw)",
   "license": "MIT",
   "scripts": {
-    "start": "tshark -2 -q -l -Y \"http and data-text-lines\" -T fields -e data | node fgo-drop-mon.js",
+    "start": "tshark -q -l -Y \"http and data-text-lines\" -T fields -e data | node fgo-drop-mon.js",
     "test": "eslint *.js"
   },
   "devDependencies": {

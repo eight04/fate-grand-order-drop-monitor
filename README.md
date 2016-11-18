@@ -15,7 +15,7 @@ Usage
 -----
 Pipe data to the script.
 ```
-tshark -2 -q -l -Y "http and data-text-lines" -T fields -e data | node fgo-drop-mon.js
+tshark -q -l -Y "http and data-text-lines" -T fields -e data | node fgo-drop-mon.js
 ```
 
 ID Table
