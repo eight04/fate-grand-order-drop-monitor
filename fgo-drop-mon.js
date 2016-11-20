@@ -33,8 +33,8 @@ function buildTable(fn) {
 function main(data) {
 	data = Buffer.from(data, "hex");
 	data = zlib.unzipSync(data);
-	data = Buffer.from(data.toString(), "base64").toString();
-	data = data.replace(/}[^}]*$/, "}");
+	data = decodeURIComponent(data.toString());
+	data = Buffer.from(data, "base64").toString();
 	data = JSON.parse(data);
 	var drops = findDrop(data.cache.replaced.battle[0].battleInfo.enemyDeck);
 	console.log(drops);
